@@ -1,0 +1,101 @@
+
+
+.grandparent {
+  background-color: brown;
+  width: 250px;
+  height: 250px;
+}
+
+.parent {
+  background-color: blue;
+  width: 180px;
+  height: 180px;
+}
+
+.child {
+  background-color: green;
+  width: 100px;
+  height: 100px;
+}
+
+.new-div {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hide {
+  display: none;
+}
+
+.todos {
+  list-style: none;
+}
+
+.todo {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 300px;
+  margin: 5px;
+
+  .heading {
+    height: 25px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .contents {
+    display: none;
+    padding: 5px;
+    border-top: 1px solid black;
+
+    &--open {
+      display: block;
+    }
+
+    &--preview {
+      display: block;
+      max-height: 35px;
+      overflow: hidden;
+    }
+  }
+
+  &--destroyed {
+    background-color: red;
+
+    .trigger-link,
+    .expand-trigger,
+    .publish-trigger  {
+      display: none;
+    }
+
+    .controls {
+      margin: 0 auto;
+    }
+  }
+
+  &--published {
+    .expand-trigger {
+      display: none;
+    }
+
+    .contents {
+      display: block;
+    }
+  }
+}
+
+.todo--published.todo--destroyed {
+  .contents {
+    display: none;
+  }
+}
