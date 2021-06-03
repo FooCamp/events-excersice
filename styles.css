@@ -1,0 +1,103 @@
+.grandparent {
+  background-color: brown;
+  width: 250px;
+  height: 250px;
+}
+
+.parent {
+  background-color: blue;
+  width: 180px;
+  height: 180px;
+}
+
+.child {
+  background-color: green;
+  width: 100px;
+  height: 100px;
+}
+
+.new-div {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.hide {
+  display: none;
+}
+
+.todos {
+  list-style: none;
+}
+
+.todo {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 450px;
+  margin: 5px;
+}
+
+.todo .heading {
+  height: 25px;
+  padding: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.todo .contents {
+  display: none;
+  padding: 5px;
+  border-top: 1px solid black;
+}
+
+.todo .contents--open {
+  display: block;
+}
+
+.todo .contents--preview {
+  display: block;
+  max-height: 35px;
+  overflow: hidden;
+}
+
+.todo--destroyed {
+  background-color: red;
+}
+
+.todo--destroyed .trigger-link,
+.todo--destroyed .expand-trigger,
+.todo--destroyed .publish-trigger {
+  display: none;
+}
+
+.todo--destroyed .controls {
+  margin: 0 auto;
+}
+
+.todo--published .expand-trigger {
+  display: none;
+}
+
+.todo--published .contents {
+  display: block;
+}
+
+.todo--published.todo--destroyed .contents {
+  display: none;
+}
+/*# sourceMappingURL=styles.css.map */
