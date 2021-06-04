@@ -1,4 +1,4 @@
-# events-excersice
+# events-excersice 2
 
 ## Acceptance criteria
 
