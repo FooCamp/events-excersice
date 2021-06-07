@@ -36,6 +36,8 @@
 
 .todos {
   list-style: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .todo {
@@ -90,7 +92,8 @@
   margin: 0 auto;
 }
 
-.todo--published .expand-trigger {
+.todo--published .expand-trigger,
+.todo--published .publish-trigger {
   display: none;
 }
 
@@ -102,9 +105,18 @@
   display: none;
 }
 
+.input-todo {
+  margin-left: 40px;
+  list-style: none;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 5px;
+  width: 450px;
+}
+
 .input-content {
   padding: 0 5px 75px;
-  width: 300px;
+  width: 430px;
   word-wrap: break-word;
 }
 

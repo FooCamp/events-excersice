@@ -11,13 +11,13 @@ Student: Orlando Guevara
 - [x] expand buttton must condense or cillapse the todo based on the above
 - [x] when a todo content is focused, its backgroun must change color
 - [x] if todo is not "published" and alert must pop up when trying to cut or copy its contents, and the action mus be prevented
-- [ ] clicking the "make public" button shou "publish" the todo
+- [x] clicking the "make public" button shou "publish" the todo
 
-  - [ ] "published" todos must:
-    - [ ] remain expanded
-    - [ ] hide/remove the expand/collapse button
-    - [ ] disable preview on file name hover
-    - [ ] allow copy or cut actions
+  - [x] "published" todos must:
+    - [x] remain expanded
+    - [x] hide/remove the expand/collapse button
+    - [x] disable preview on file name hover
+    - [x] allow copy or cut actions
 
 - [x] clicking the "X" button must destry/scrap the todo
 
@@ -34,6 +34,6 @@ Student: Orlando Guevara
 
 - [x] Make the todo creation take input from the user
 
-- [ ] Make the controls safe- [ ]
+- [x] Make the controls safe- [ ]
 
 _-\*:With the provided css and html many elements are hidden just visually, curious users could manipulate this elements to cause undesired behaviour, make sure controls are removed when they should be inaccesible and restored when necessary_
