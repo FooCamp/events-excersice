@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <button class="add">
-    add to
-  </button>
-  
-  <ul class="todos">
-    <li class="todo">
-      <div class="heading">
-        <a href="#" class="trigger-link">
-          <h3 class="title">File name</h3>
-        </a>
-        <div class="controls">
-          <button class="publish-trigger">make public</button>
-          <button class="expand-trigger">expand</button>
-          <button class="destroy-trigger">X</button>
-        </div>
-      </div>
-      <div class="contents" tabindex=0>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Optio inventore at illo voluptates commodi
-          omnis quibusdam nostrum magni doloremque totam,
-          autem soluta eos voluptatum aliquam ipsum laboriosam
-          atque ullam saepe!
-        </p>
-      </div>
-    </li>
-  </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="inputTodo">
+      <p>Filename:</p>
+      <input type="text" class="input-filename" />
+      <br />
+      <p>Content:</p>
+      <textarea type="text" class="input-content"></textarea>
+      <br />
+      <button class="add" onclick="addTodo();">Add to-do</button>
+    </div>
 
-<script src="todos.js"></script>
-</body>
+    <ul class="todos">
+      <li class="todo" style="display: none">
+        <div class="heading">
+          <a href="#" class="trigger-link">
+            <h3 class="title"></h3>
+          </a>
+          <div class="controls">
+            <button class="publish-trigger">make public</button>
+            <button class="expand-trigger">expand</button>
+            <button class="destroy-trigger">X</button>
+          </div>
+        </div>
+        <div class="contents" tabindex="0">
+          <p></p>
+        </div>
+      </li>
+    </ul>
+
+    <script src="todos.js"></script>
+  </body>
 </html>

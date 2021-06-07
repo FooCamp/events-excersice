@@ -1,18 +1,17 @@
-const grandparent = document.querySelector('.grandparent');
-const parent = document.querySelector('.parent');
-const child = document.querySelector('.child');
+const grandparent = document.querySelector(".grandparent");
+const parent = document.querySelector(".parent");
+const child = document.querySelector(".child");
 
 // Base usage
 
-// grandparent.addEventListener('click', (e) => {
-//   console.log(e);
-// });
+grandparent.addEventListener("click", (event) => {
+    console.log(event);
+});
 
 // Default (Bubbling)
 // grandparent.addEventListener('click', (e) => {
 //   console.log("grandparent");
 // });
-
 
 // const onClickFunc = (event) => {
 //   console.log("grandparent onclick");
@@ -36,7 +35,6 @@ const child = document.querySelector('.child');
 
 //     console.log("child2");
 // });
-
 
 // Capturing
 

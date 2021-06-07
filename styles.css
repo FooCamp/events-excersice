@@ -27,7 +27,7 @@
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .hide {
@@ -52,16 +52,17 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .todo .contents {
   display: none;
   padding: 5px;
+  word-wrap: break-word;
   border-top: 1px solid black;
 }
 
@@ -100,4 +101,11 @@
 .todo--published.todo--destroyed .contents {
   display: none;
 }
+
+.input-content {
+  padding: 0 5px 75px;
+  width: 300px;
+  word-wrap: break-word;
+}
+
 /*# sourceMappingURL=styles.css.map */
