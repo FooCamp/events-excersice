@@ -1,109 +1,177 @@
-const grandparent = document.querySelector('.grandparent');
-const parent = document.querySelector('.parent');
-const child = document.querySelector('.child');
+const addTodo = (mockData) => {
+  const todoData = mockData ? mockData : getTodoInput();
+  const newTodoElement = createTodoElement(todoData);
+  const todoList = document.querySelector(".todos");
 
-// Base usage
+  console.log(newTodoElement);
+  if (newTodoElement === null) {
+    alert("New Todos must have a filename and content.");
+  } else {
+    todoList.appendChild(newTodoElement);
+  }
+};
 
-// grandparent.addEventListener('click', (e) => {
-//   console.log(e);
-// });
+const getTodoInput = () => {
+  let filename = getInputText("input-filename");
+  let content = getInputText("input-content");
 
-// Default (Bubbling)
-// grandparent.addEventListener('click', (e) => {
-//   console.log("grandparent");
-// });
+  clearInputText("input-filename");
+  clearInputText("input-content");
 
+  return {
+    filename,
+    content,
+  };
+};
 
-// const onClickFunc = (event) => {
-//   console.log("grandparent onclick");
-// };
+const getInputText = (className) => {
+  let [filenameElement] = document.getElementsByClassName(className);
+  let inputValueString = filenameElement.value;
+  return inputValueString;
+};
 
-// grandparent.onclick = onClickFunc;
+const clearInputText = (className) => {
+  document.getElementsByClassName(className)[0].value = "";
+};
 
-// grandparent.onclick = null;
+const createTodoElement = (todoData) => {
+  const { filename, content } = todoData;
 
-// parent.addEventListener('click', (e) => {
-//   console.log("parent");
-// });
+  const todoTemplate = document.querySelector("li");
+  const newTodo = todoTemplate.cloneNode(true);
 
-// child.addEventListener('click', (e) => {
-//   e.stopPropagation()
-//   e.stopImmediatePropagation()
-//   console.log("child");
-// });
+  const newFilename = newTodo.querySelector("h3");
+  const newContent = newTodo.querySelector("p");
 
-// child.addEventListener('click', (e) => {
+  const newFilenameText = document.createTextNode(filename);
+  const newContentText = document.createTextNode(content);
 
-//     console.log("child2");
-// });
+  if (filename === undefined || content === undefined) {
+    return null;
+  }
 
+  newFilename.appendChild(newFilenameText);
+  newContent.appendChild(newContentText);
 
-// Capturing
+  // We set Display CSS Property to "inline-block" so it's visible
+  newTodo.style.display = "inline-block";
 
-// grandparent.addEventListener('click', (e) => {
-//   console.log("grandparent capture");
-//   // e.stopPropagation()
-// }, {
-//   capture: true
-// });
+  createEventListeners(newTodo);
 
-// parent.addEventListener('click', (e) => {
-//   console.log("parent capture");
-// }, {
-//   capture: true
-// });
+  return newTodo;
+};
 
-// child.addEventListener('click', (e) => {
-//   console.log("child capture");
-// }, {
-//   capture: true
-// });
+const createEventListeners = (todoElement) => {
+  const publishButton = todoElement.querySelector(".publish-trigger");
+  const expandButton = todoElement.querySelector(".expand-trigger");
+  const destroyButton = todoElement.querySelector(".destroy-trigger");
 
-// Run once (auto remove)
-// parent.addEventListener('click', (e) => {
-//   console.log("parent capture");
-// }, {
-//   once: true
-// });
+  const header = todoElement.querySelector(".heading");
+  const filename = todoElement.querySelector(".trigger-link");
+  const content = todoElement.querySelector(".contents");
 
-// Remove listeners
+  expandButton.addEventListener("click", expandEvent);
+  header.addEventListener("click", expandEvent);
+  filename.addEventListener("click", expandEvent);
+  function expandEvent(event) {
+    event.stopPropagation();
+    if (todoElement.classList.contains("todo--destroyed")) {
+      return;
+    }
+    content.classList.toggle("contents--open");
+    // If the content is previewed, stop doing so.
+    content.classList.remove("contents--preview");
 
-// bad
+    const expanded = content.classList.contains("contents--open");
+    expandButton.innerText = expanded ? "collapse" : "expand";
+  }
 
-// child.removeEventListener('click', (e) => {
-//   console.log("child");
-// });
+  filename.addEventListener("mouseover", previewEventShow);
+  filename.addEventListener("mouseleave", previewEventHide);
+  function previewEventShow(event) {
+    event.stopPropagation();
+    // If contents are expanded, do not preview.
+    if (content.classList.contains("contents--open")) {
+      return;
+    } else {
+      content.classList.add("contents--preview");
+    }
+  }
+  function previewEventHide(event) {
+    event.stopPropagation();
+    content.classList.remove("contents--preview");
+  }
 
-// good
+  content.addEventListener("focus", contentFocus);
+  content.addEventListener("blur", contentBlur);
+  function contentFocus(event) {
+    event.stopPropagation();
+    if (todoElement.classList.contains("todo--destroyed")) {
+      return;
+    }
+    event.target.style.background = "aliceblue";
+  }
+  function contentBlur(event) {
+    event.stopPropagation();
+    event.target.style.background = "";
+  }
 
-// const reportChild = (e) => {
-//   console.log("child");
-// }
+  content.addEventListener("copy", NotNice);
+  function NotNice(event) {
+    if (!todoElement.classList.contains("todo--published")) {
+      alert("What you're doing here ain't nice buddy.");
+      event.preventDefault();
+    }
+  }
 
-// child.addEventListener('click', reportChild);
+  destroyButton.addEventListener("click", destroyEvent);
+  function destroyEvent(event) {
+    event.stopPropagation();
+    content.classList.remove("contents--open");
+    todoElement.classList.toggle("todo--destroyed");
 
-// child.removeEventListener('click', reportChild);
+    const destroyed = todoElement.classList.contains("todo--destroyed");
 
-// setTimeout(() => {
-//   child.removeEventListener('click', reportChild);
-// }, 3000);
+    // Disable the functionality of buttons while the To-do remains destroyed.
+    if (destroyed) {
+      publishButton.removeEventListener("click", publishEvent, false);
+      expandButton.removeEventListener("click", expandEvent, false);
+    } else {
+      publishButton.addEventListener("click", publishEvent);
+      expandButton.addEventListener("click", expandEvent);
+    }
 
-// // Timing is key
-// const divs = document.querySelectorAll('div')
+    destroyButton.innerText = destroyed ? "restore" : "x";
+  }
 
-// divs.forEach(div => {
-//   div.addEventListener('click', () => {
-//     console.log('div clicked');
-//   })
-// });
+  publishButton.addEventListener("click", publishEvent);
+  function publishEvent(event) {
+    event.stopPropagation();
+    todoElement.classList.add("todo--published");
+    content.classList.add("contents--open");
+    // content.removeEventListener("focus", contentFocus, false);
+    filename.removeEventListener("mouseover", previewEventShow, false);
+  }
+};
 
-// const newDiv = document.createElement('div');
-// newDiv.classList.add('new-div');
-// document.body.appendChild(newDiv)
+// Todo mockup.
+const mockText = [
+  {
+    filename: "Clean the toilet",
+    content:
+      "You haven't cleaned the toilet yet, I'd agree that's very disgusting and you should do it as soon as possible my friend.",
+  },
+  {
+    filename: "Attend FooCamp classes",
+    content:
+      "At 7 PM in Venezuelan time, make sure to attend to FooCamp. Very important ok.",
+  },
+  {
+    filename: "I don't know fam",
+    content: "Yeah I just didn't know what to put in this one, alright.",
+  },
+];
 
-// // Delagation
-// document.addEventListener('click', (e) => {
-//   if (e.target.matches('div')) {
-//     console.log('div clicked');
-//   }
-// });
+mockText.forEach((todo) => {
+  addTodo(todo);
+});
