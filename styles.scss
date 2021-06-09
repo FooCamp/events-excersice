@@ -37,6 +37,7 @@
 
 .todos {
   list-style: none;
+  padding-left: 0;
 }
 
 .todo {
@@ -97,5 +98,19 @@
 .todo--published.todo--destroyed {
   .contents {
     display: none;
+  }
+}
+
+.form{
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  &__input{
+    margin-bottom: 0.5rem;
+  }
+  &__title{
+    margin: 0 0 0.5rem;
   }
 }
