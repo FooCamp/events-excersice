@@ -8,15 +8,22 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <button class="add">
-    add to
-  </button>
+  <form action="" class="form">
+    <h3 class="form__title">Add To Do</h3>
+    <label for="" class="form__label">Title:</label>
+    <input type="text" name="" class="form__input" id="title">
+    <label for="" class="form__label">Content:</label>
+    <textarea name="" cols="30" rows="3" class="form__input" id="content"></textarea>
+    <button class="add">
+      add to
+    </button>
+  </form>
   
   <ul class="todos">
-    <li class="todo">
+    <li class="todo hide sample">
       <div class="heading">
         <a href="#" class="trigger-link">
-          <h3 class="title">File name</h3>
+          <h3 class="title"></h3>
         </a>
         <div class="controls">
           <button class="publish-trigger">make public</button>
@@ -25,17 +32,10 @@
         </div>
       </div>
       <div class="contents" tabindex=0>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Optio inventore at illo voluptates commodi
-          omnis quibusdam nostrum magni doloremque totam,
-          autem soluta eos voluptatum aliquam ipsum laboriosam
-          atque ullam saepe!
-        </p>
+        <p class="contents__text"></p>
       </div>
     </li>
   </ul>
-
 <script src="todos.js"></script>
 </body>
 </html>
